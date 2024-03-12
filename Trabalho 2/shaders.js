@@ -206,51 +206,6 @@ const gouraud_fs = `#version 300 es
   }
 `;
 
-
-
-
-
-
-// const toon_fs = `#version 300 es
-// precision highp float;
-
-// in vec3 v_normal;
-
-// uniform vec3 u_lightDirection;
-
-// out vec4 outColor;
-
-// float diffuseFactor(vec3 normal, vec3 light_direction) {
-//     float df = dot(normalize(normal), normalize(light_direction));
-
-//     if (gl_FrontFacing) {
-//         df = -df;
-//     }
-
-//     return max(0.0, df);
-// }
-
-// /*
-//  * The main program
-//  */
-// void main() {
-//     vec3 light_direction = -u_lightDirection;
-
-//     // Calculate the light diffusion factor
-//     float df = diffuseFactor(v_normal, light_direction);
-
-//     // Define the toon shading steps
-//     float nSteps = 4.0;
-//     float step = sqrt(df) * nSteps;
-//     step = (floor(step) + smoothstep(0.48, 0.52, fract(step))) / nSteps;
-
-//     // Calculate the surface color
-//     float surface_color = step * step;
-
-//     // Fragment shader output
-//     outColor = vec4(vec3(surface_color), 1.0);
-// }`;
-
 const toon_shader = [vs, toon_fs];
 const phong_shader = [vs, phong_fs];
 // const gouraud_shader = [gouraud_vs, gouraud_fs];

@@ -317,15 +317,6 @@ async function main() {
 
 
         for (const { bufferInfo, vao, material } of parts) {
-            // gl.bindVertexArray(vao);
-
-            // twgl.setUniforms(programInfo, {
-            //     u_view: view,
-            //     u_world,
-            // }, material);
-
-            // twgl.drawBufferInfo(gl, bufferInfo);
-
             drawScene(u_world, bufferInfo, vao, material, programInfo);
         }
 
