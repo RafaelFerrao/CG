@@ -253,8 +253,25 @@ async function main() {
         light_intensities[index/3] = light.intensity;
     }
 
+    const rotation_speed_bar = document.querySelector("#rotation-speed");
+
+    let rotation_speed = 1;
+    let total_elapsed_time = 0;
+
+    rotation_speed_bar.addEventListener('input', function (event) {
+        rotation_speed = event.target.value;
+    });
+
+    let u_world = m4.identity();
+
+
+
+
     function render(time) {
         time *= 0.001;
+
+        const delta_time = time - total_elapsed_time;
+        total_elapsed_time = time;
 
         twgl.resizeCanvasToDisplaySize(gl.canvas);
 
@@ -269,8 +286,13 @@ async function main() {
 
         const { parts, objOffset, range } = model
 
-        const u_world = m4.yRotation(time * 0.5);
-        // const u_world = m4.yRotation(1.5);
+        if (rotation_speed === 0) {
+            total_elapsed_time = 0;
+        }
+    
+        const rotation = delta_time * rotation_speed/2;
+
+        u_world = m4.yRotate(u_world, rotation);
 
         const cameraTarget = [0, 0, 0];
         const radius = m4.length(range) * 1.2;
